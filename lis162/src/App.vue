@@ -55,6 +55,16 @@ v-app(style="background: #f3f3f3")
                       :type="show ? 'text' : 'password'"
                       @click:append="show1 = !show1"
                       )
+                v-row 
+                  v-col(cols="3")
+                    h3.mt-1.ml-5.font-weight-light Admin?
+                  v-col(cols="9")
+                    v-row
+                      v-col(cols="3")
+                        v-checkbox.check(color="primary" label="Yes")
+                      v-col(cols="3")
+                        v-checkbox.check(color="red" label="No")
+                      v-col(cols="6")
             v-row
               v-col(cols="8")
               v-col(cols="4")
@@ -75,3 +85,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+  .check{
+    margin-top: 2px;
+  }
+</style>
