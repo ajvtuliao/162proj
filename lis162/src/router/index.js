@@ -1,33 +1,64 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Admin from '../views/Admin.vue'
-import Login from '../views/Login.vue'
-
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '',
     name: 'Login',
-    component: Login
+    component: () => import('../views/Login.vue'),
+
   },
   {
-    path: '/home',
-    name: 'Home',
-    component: Home
+    path: '/user',
+    component: () => import('../components/Navbar.vue'),
+    name: 'Navigation',
+    meta: {
+      auth: true
+    },
+    children:
+      [
+        {
+          path: 'home',
+          name: 'Home',
+          component: () => import('../views/Home.vue'),
+        },
+      ],
   },
   {
     path: '/admin',
+    component: () => import('../components/Navbar.vue'),
     name: 'Admin',
-    component: Admin
-  },
-]
+    children:
+      [
+        {
+          path: 'admin',
+          name: 'Admin',
+          component: () => import('../views/Admin.vue'),
+          meta: { admin: true },
+        },
+      ],
+    // meta: {
+    //   auth: true
+    // },
+    // beforeEnter: async (to, from, next) => {
+    //     let claims = firebase.auth()?.currentUser?.getIdTokenResult();
 
+    //       if (claims?.admin) {
+    //           return next();   
+    //       }else {
+    //           return next({
+    //               path: '/user/home'
+    //           });
+    //       } 
+
+    // }
+  }
+]
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-})
+});
 
 export default router
