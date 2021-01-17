@@ -39,6 +39,7 @@
                       v-text-field.mt-5(
                         outlined label="Name" 
                         placeholder="Last Name, First Name, M.I" 
+                        prepend-inner-icon="mdi-account"
                         input="text"
                         :rules="[rules.required]"
                         )
@@ -47,7 +48,7 @@
                   v-col
                   v-col(cols="10")
                     v-form(v-model="valid")
-                      v-text-field.mt-5(outlined label="Email" input="text" :rules="[rules.required]")
+                      v-text-field.mt-5(outlined label="Email" prepend-inner-icon="mdi-email" input="text" :rules="[rules.required]")
                   v-col
                 v-row 
                   v-col

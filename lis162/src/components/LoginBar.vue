@@ -13,7 +13,8 @@ div
             v-text-field(
               outlined 
               dense 
-              label="Name"
+              label="Email"
+              prepend-inner-icon="mdi-email"
               )
           v-col(cols="6")
             v-text-field(

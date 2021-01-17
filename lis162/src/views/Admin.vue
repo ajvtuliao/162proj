@@ -27,7 +27,7 @@
                 span Add Skill
       v-row 
         v-col
-          v-simple-table(fixed-header)
+          v-simple-table.table(fixed-header)
             template(v-slot:default)
               thead
                 tr
@@ -52,4 +52,7 @@ export default {
 };
 </script>
 <style scoped>
+  .table{
+    background-color: #dadafb;
+  }
 </style>
