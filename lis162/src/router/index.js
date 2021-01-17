@@ -11,7 +11,7 @@ const routes = [
   },
   {
     path: '/user',
-    component: () => import('../components/Navbar.vue'),
+    component: () => import('../components/LoginBar.vue'),
     name: 'Navigation',
     meta: {
       auth: true
