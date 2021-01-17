@@ -1,22 +1,25 @@
 <template lang="pug">
   div
+    router-view
     v-container
-      v-row.justify-content-center.align-center
-        v-col(cols="8")
-          v-text-field(
+      v-row.justify-content-center.align-center.ml-3.mt-3
+        v-col(cols="10")
+          v-text-field.search(
             placeholder="Search Name",
             solo,
             dense,
             prepend-inner-icon="mdi-magnify",
             clearable
             )
-        v-col(cols="2")
-          v-btn(label="Search")
-        v-col(cols="2")
-          v-btn.mr-5(label="Add Member")
-          v-btn(label="Add Skills")
-      v-row 
-          v-simple-table(fixed-header)
+        v-col(cols="1")
+          v-btn( dark color="#FE8848").mt-n7
+            v-icon mdi-account-search
+            span.ml-2 Search
+        v-col
+
+      v-row.mx-n12
+        v-col
+          v-simple-table.table(fixed-header)
             template(v-slot:default)
               thead
                 tr
@@ -38,5 +41,7 @@ export default {
 }
 </script>
 <style scoped>
-
+  .table{
+    background-color: #ededfd;
+  }
 </style>
