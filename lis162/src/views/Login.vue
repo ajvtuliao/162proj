@@ -55,12 +55,12 @@
                   v-col(cols="10")
                     v-form(v-model="valid")
                     v-text-field.mt-1.input-group--focused(
-                      v-model="password1"
+                      v-model="password"
                       outlined 
                       label="Password" 
                       :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
                       :rules="[rules.required]"
-                      :type="show ? 'text' : 'password1'"
+                      :type="show ? 'text' : 'password'"
                       @click:append="show = !show"
                       )
                   v-col
@@ -69,11 +69,12 @@
                   v-col(cols="10")
                     v-form(v-model="valid")
                     v-text-field.mt-1.input-group--focused(
-                      v-model="password"
+                      v-model="password1"
                       outlined 
                       label="Confirm Password" 
                       :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                       :rules="[rules.required]"
+                      :type="show ? 'text' : 'password1'"
                       @click:append="show1 = !show1"
                     )
                   v-col
