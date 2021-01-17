@@ -1,6 +1,5 @@
 <template lang="pug">
 v-app(style="background: #ffffff")
-  v-content
   router-view
 </template>
 
