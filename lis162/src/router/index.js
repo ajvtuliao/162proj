@@ -31,10 +31,10 @@ const routes = [
   },
   {
     path: '/admin',
-    component: Admin, 
+    component: Admin,
     children: [
       {
-      path: '',
+        path: '',
         component: AdminBar
       }
     ]
@@ -42,6 +42,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
+  mode: 'history',
   routes
 });
 export default router
