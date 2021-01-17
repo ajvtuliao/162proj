@@ -17,7 +17,21 @@
           v-btn(label="Add Member").mr-5
           v-btn(label="Add Skills")
       v-row 
-        v-simple-table
+        v-simple-table(fixed-header)
+          template(v-slot:default)
+            thead
+              tr
+                th.text-center Member Name
+                th.text-center Status
+                th.text-center Current Projects
+                th.text-center Skills
+            tbody
+              tr 
+                td.text-center 
+                td.text-center
+                td.text-center 
+                td.text-center
+
 </template>
 <script>
 export default {
