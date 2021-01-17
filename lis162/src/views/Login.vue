@@ -2,7 +2,7 @@
   div
     router-view
     v-container
-      v-row.mt-12.mr-n10
+      v-row.mt-8.mr-n10
         v-col(cols="5").mr-12
           v-row.mt-5.ml-n16.mr-n16
             v-col
@@ -97,7 +97,7 @@
             v-row
               v-col(cols="8")
               v-col(cols="4")
-                v-btn.mb-6.ml-6.mt-n4(color="#4747EB", dark, raised, medium) Register
+                v-btn.mb-6.ml-n10.mt-n4(color="#4747EB", dark, raised, medium) Create Account
 </template>
 
 <script>
