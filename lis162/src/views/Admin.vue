@@ -23,20 +23,15 @@
                 span Add Member
               v-dialog(v-model="dialog" width="800")
                 v-card.pa-3(width="800px") 
-                  v-row 
-                    v-col
-                      v-card-title.ma-2.member.justify-center
-                      span.font-weight-light.display-1 Add 
-                      span.font-weight-bold.display-1 Member 
-                      span.font-weight-light.display-1 Details
-                  v-row 
-                    v-col
                   v-row
+                    v-col.mt-n3.mb-3
+                      v-card-title.headline.justify-center.mt-3 Add Book Details
+                  v-row.mx-2
                     v-col(cols="3")
                       v-card-subtitle.font-weight-bold Name
                     v-col(cols="9")
                       v-text-field(outlined prepend-inner-icon="mdi-account")
-                  v-row
+                  v-row.mx-2
                     v-col(cols="3")
                       v-card-subtitle.font-weight-bold Membership Date
                     v-col(cols="9")
@@ -66,12 +61,12 @@
                             span Cancel
                           v-btn(dark color="#4747EB" @click="$refs.dialog.save(date)")
                             span Save
-                  v-row
+                  v-row.mx-2
                     v-col(cols="3")
                       v-card-subtitle.font-weight-bold Name
                     v-col(cols="9")
                       v-text-field(outlined prepend-inner-icon="mdi-account")
-                  v-row
+                  v-row.mx-2
                     v-col(cols="3")
                       v-card-subtitle.font-weight-bold Name
                     v-col(cols="9")

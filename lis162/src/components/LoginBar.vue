@@ -15,6 +15,7 @@ div
               dense 
               label="Email"
               prepend-inner-icon="mdi-email"
+              v-model="email"
               )
           v-col(cols="6")
             v-text-field(
@@ -36,6 +37,8 @@ export default {
   data() {
     return {
       show: false,
+      emai: '',
+      password: '',
     };
   },
 };

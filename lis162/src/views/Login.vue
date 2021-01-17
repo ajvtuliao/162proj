@@ -37,6 +37,7 @@
                   v-col(cols="10")
                     v-form(v-model="valid")
                       v-text-field.mt-5(
+                        v-model="name"
                         outlined label="Name" 
                         placeholder="Last Name, First Name, M.I" 
                         prepend-inner-icon="mdi-account"
@@ -48,7 +49,7 @@
                   v-col
                   v-col(cols="10")
                     v-form(v-model="valid")
-                      v-text-field.mt-5(outlined label="Email" prepend-inner-icon="mdi-email" input="text" :rules="[rules.required]")
+                      v-text-field.mt-5(outlined v-model="email" label="Email" prepend-inner-icon="mdi-email" input="text" :rules="[rules.required]")
                   v-col
                 v-row 
                   v-col
@@ -87,12 +88,14 @@
                           color="primary",
                           label="Admin Account",
                           :rules="[rules.required]"
+                          v-model="admin"
                         )
                       v-col(cols="4")
                         v-checkbox.check(
                           color="red",
                           label="User Account",
                           :rules="[rules.required]"
+                          v-model="user"
                         )
                       v-col(cols="4")
                   v-col
@@ -107,7 +110,13 @@ export default {
   data() {
     return {
       show: false,
+      name: '',
+      email: '',
+      admin: false,
+      user: false,
       show1: false,
+      password: '',
+      password1: '',
       rules: {
         required: (value) => !!value || "Required.",
       },
