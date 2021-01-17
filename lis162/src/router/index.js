@@ -4,7 +4,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '',
+    path: '/',
     name: 'Login',
     component: () => import('../views/Login.vue'),
 
@@ -38,26 +38,17 @@ const routes = [
           meta: { admin: true },
         },
       ],
-    // meta: {
-    //   auth: true
-    // },
-    // beforeEnter: async (to, from, next) => {
-    //     let claims = firebase.auth()?.currentUser?.getIdTokenResult();
-
-    //       if (claims?.admin) {
-    //           return next();   
-    //       }else {
-    //           return next({
-    //               path: '/user/home'
-    //           });
-    //       } 
-
-    // }
   }
 ]
+
+// const routes = [
+//   {
+//     path: '/',
+//     name: 'Login',
+//     component: Login
+//   }
+// ]
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
   routes
 });
 
