@@ -6,39 +6,16 @@ const routes = [
   {
     path: '/',
     name: 'Login',
-    component: () => import('../views/Login.vue'),
+    component: () => import('../components/LoginBar.vue'),
+    children: [
+      {
+        path: 'login',
+        name: '',
+        component: () => import('../views/Login.vue'),
+      }
+    ]
 
   },
-  {
-    path: '/user',
-    component: () => import('../components/LoginBar.vue'),
-    name: 'Navigation',
-    meta: {
-      auth: true
-    },
-    children:
-      [
-        {
-          path: 'home',
-          name: 'Home',
-          component: () => import('../views/Home.vue'),
-        },
-      ],
-  },
-  {
-    path: '/admin',
-    component: () => import('../components/Navbar.vue'),
-    name: 'Admin',
-    children:
-      [
-        {
-          path: 'admin',
-          name: 'Admin',
-          component: () => import('../views/Admin.vue'),
-          meta: { admin: true },
-        },
-      ],
-  }
 ]
 
 const router = new VueRouter({
