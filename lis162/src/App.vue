@@ -1,36 +1,46 @@
 <template lang="pug">
-v-app(style="background: #f3f3f3")
+v-app(style="background: #ffffff")
   v-content
     v-container
       v-row.mt-12
         v-col(cols="5")
+          v-row 
+            v-col
+              v-img.coding(src="./assets/AdobeStock_305233591.jpg" contain)
+          v-row
+            v-col 
+              v-card-title
+                span.ml-n3.font-weight-black.display-2.learn Learn 
+                h2.font-weight-light.program.ml-2 programming languages...
+              v-card-title.mt-n7
+                span.ml-n3.font-weight-black.display-2.earn.mt-3 Earn 
+                h2.font-weight-light.money.ml-3.mt-3 money...
         v-col(cols="7")
-          v-card.mt-16.align-center.mx-auto(outlined elevation="2" width="600px")
+          v-card.mt-5.mb-10.align-center.mx-auto(outlined elevation="2" width="600px" color="rgba(225, 244, 247, 0.1)")
             v-row
               v-col(cols="4")
-              v-col(cols="4")
-                v-card-title.justify-conten-center
-                  span.mr-1.font-weight-black.display-1 SIGN 
-                  span.font-weight-light.display-1.head-text UP
-              v-col(cols="4")
+              v-col(cols="5")
+                v-card-title.justify-content-center.ml-n3.mt-3
+                  span.mr-3.font-weight-black.display-2.sign SIGN 
+                  span.font-weight-light.display-2.up UP
+              v-col(cols="3")
             v-row
-              v-col(cols="11")
+              v-col
                 v-row
-                  v-col(cols="3")
-                    h3.mt-9.ml-5.font-weight-light Name:
-                  v-col(cols="9")
+                  v-col
+                  v-col(cols="10")
                     v-form(v-model="valid")
-                      v-text-field.mt-5(outlined label="Name" placeholder="Last Name, First Name, M.I" input="text")
+                      v-text-field.mt-5(outlined label="Name" placeholder="Last Name, First Name, M.I" input="text" :rules="[rules.required]")
+                  v-col
                 v-row
-                  v-col(cols="3")
-                    h3.mt-9.ml-5.font-weight-light Email:
-                  v-col(cols="9")
+                  v-col
+                  v-col(cols="10")
                     v-form(v-model="valid")
-                      v-text-field.mt-5(outlined label="Email" input="text")
+                      v-text-field.mt-5(outlined label="Email" input="text" :rules="[rules.required]")
+                  v-col
                 v-row 
-                  v-col(cols="3")
-                    h3.mt-5.ml-5.font-weight-light Password:
-                  v-col(cols="9")
+                  v-col
+                  v-col(cols="10")
                     v-form(v-model="valid")
                     v-text-field.mt-1.input-group--focused(
                       v-model="password"
@@ -41,34 +51,35 @@ v-app(style="background: #f3f3f3")
                       :type="show ? 'text' : 'password'"
                       @click:append="show = !show"
                       )
-                v-row 
-                  v-col(cols="3")
-                    h3.mt-1.ml-5.font-weight-light Confirm Password:
-                  v-col(cols="9")
+                  v-col
+                v-row
+                  v-col 
+                  v-col(cols="10")
                     v-form(v-model="valid")
                     v-text-field.mt-1.input-group--focused(
                       v-model="password"
                       outlined 
-                      label="Password" 
+                      label="Confirm Password" 
                       :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                       :rules="[rules.required]"
                       :type="show ? 'text' : 'password'"
                       @click:append="show1 = !show1"
                       )
+                  v-col
                 v-row 
-                  v-col(cols="3")
-                    h3.mt-1.ml-5.font-weight-light Admin?
-                  v-col(cols="9")
+                  v-col
+                  v-col(cols="10")
                     v-row
-                      v-col(cols="3")
-                        v-checkbox.check(color="primary" label="Yes")
-                      v-col(cols="3")
-                        v-checkbox.check(color="red" label="No")
-                      v-col(cols="6")
+                      v-col(cols="4")
+                        v-checkbox.check(color="primary" label="Admin Account" :rules="[rules.required]")
+                      v-col(cols="4")
+                        v-checkbox.check(color="red" label="User Account" :rules="[rules.required]")
+                      v-col(cols="4")
+                  v-col
             v-row
               v-col(cols="8")
               v-col(cols="4")
-                v-btn.mb-6.ml-6.mt-n4(color="primary" raised medium) Register
+                v-btn.mb-6.ml-6.mt-n4(color="#4747EB" dark raised medium) Register
 </template>
 
 <script>
@@ -86,7 +97,29 @@ export default {
 };
 </script>
 <style scoped>
+  .coding{
+    border-radius: 10px;
+    margin-top: 23px;
+  }
   .check{
     margin-top: 2px;
+  }
+  .sign{
+    color: rgba(0, 0, 84, 0.9);
+  }
+  .up{
+    color: rgba(126, 126, 241, 0.9);
+  }
+  .learn{
+    color: #32ABBF;
+  }
+  .program{
+    color: #7ED0DD;
+  }
+  .earn{
+    color: #ff5b00;
+  }
+  .money{
+    color: #fe8b4b;
   }
 </style>
