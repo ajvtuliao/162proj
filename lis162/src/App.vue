@@ -4,17 +4,23 @@ v-app(style="background: #ffffff")
     v-container
       v-row.mt-12
         v-col(cols="5")
-          v-row 
+          v-row.mt-8
             v-col
               v-img.coding(src="./assets/AdobeStock_305233591.jpg" contain)
           v-row
             v-col 
               v-card-title
-                span.ml-n3.font-weight-black.display-2.learn Learn 
-                h2.font-weight-light.program.ml-2 programming languages...
+                span.ml-n3.font-weight-black.display-2.learn.mt-3 Learn
+                h2.font-weight-light.program.ml-3.mt-3 programming...
               v-card-title.mt-n7
                 span.ml-n3.font-weight-black.display-2.earn.mt-3 Earn 
                 h2.font-weight-light.money.ml-3.mt-3 money...
+              v-card-title.mt-n7
+                span.ml-n3.font-weight-black.display-2.enhance.mt-3 Enhance
+                h2.font-weight-light.skills.ml-3.mt-3 your coding skills...
+              v-card-title.mt-n7
+                span.ml-n3.font-weight-black.display-2.join.mt-3 Join
+                span.font-weight-black.display-3.intech.ml-3.mt-3 UP INTECH!
         v-col(cols="7")
           v-card.mt-5.mb-10.align-center.mx-auto(outlined elevation="2" width="600px" color="rgba(225, 244, 247, 0.1)")
             v-row
@@ -121,5 +127,17 @@ export default {
   }
   .money{
     color: #fe8b4b;
+  }
+  .enhance{
+    color: #2BB69F;
+  }
+  .skills{
+    color: #6ADCC9;
+  }
+  .join{
+    color: #ffd469;
+  }
+  .intech{
+    color: #fab300;
   }
 </style>
