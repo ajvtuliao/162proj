@@ -15,6 +15,7 @@
           v-btn( dark color="#FE8848").mt-n6
             span Search
         v-col.mr-n6
+          //- Add Member Button
         v-col(cols="3").mt-n6
           v-row.mr-n2
             v-col(cols="6").ml-n8
@@ -116,15 +117,16 @@
                     )
                       v-icon.mr-1 mdi-close
                       span.mr-2 Close
-                    v-btn.mr-2(
+                    v-btn.mr-1(
                       dark,
                       color="#4747EB",
                       :loading="loading",
                     ) 
-                      v-icon.mr-2 mdi-account-plus
+                      v-icon mdi-account-plus
                       v-spacer
                       span Add Member
-                      v-spacer             
+                      v-spacer      
+            //-  Add Skill Button
             v-col(cols="6").ml-5
               v-btn(dark color="#fad132" @click="dialog1 = !dialog1")
                 v-icon.ml-n2.mr-2 mdi-plus-box
@@ -161,14 +163,15 @@
                     )
                       v-icon.mr-1 mdi-close
                       span.mr-2 Close
-                    v-btn.mr-2(
+                    v-btn.mr-1(
                       dark,
                       color="#4747EB",
                       :loading1="loading1",
                     ) 
                       v-spacer
                       span Add Skill
-                      v-spacer        
+                      v-spacer    
+        //- Table
       v-row.mx-n13
         v-col
           v-simple-table.table(fixed-header)
@@ -181,7 +184,9 @@
                   th.text-center Remove
               tbody
                 tr 
+                  //- Member Name
                   td.text-center.font-weight-bold
+                  //- Member Status
                   td.text-center
                     v-chip(label v-if="status = active" color="#ededfd")
                       v-icon(color="green") mdi-circle
@@ -198,10 +203,12 @@
                     v-chip(label v-if="status = applicant" color="#ededfd")
                       v-icon( color="purple") mdi-circle
                       span Applicant
+                  //- Edit Details
                   td.text-center 
                     v-btn(color="#63bf5e" dark small @click="dialog2 = !dialog2")
                       v-icon mdi-clipboard-edit
                       span Edit Details
+                    //- Edit Details Button
                     v-dialog(v-model="dialog2" width="800px")
                       v-card.pa-3(width="800px") 
                         v-row
@@ -305,7 +312,8 @@
                             v-icon.mr-2 mdi-clipboard-edit
                             v-spacer
                             span Edit Details
-                            v-spacer             
+                            v-spacer    
+                  //-  Remove Button
                   td.text-center 
                     v-btn(color="#ff4040" dark small) 
                       v-icon mdi-trash-can 
