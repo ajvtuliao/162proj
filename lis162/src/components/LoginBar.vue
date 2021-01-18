@@ -28,19 +28,37 @@ div
               @click:append="show = !show"
             )
       v-col(cols="1").mt-12
-        v-btn(color="rgba(34, 119, 130, 0.8)" depressed label="Login" small dark)
+        v-btn(color="rgba(34, 119, 130, 0.8)" depressed label="Login" small dark @click="login")
           v-icon.ml-n1 mdi-login
           span.ml-1 Login
 </template>
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
       show: false,
-      emai: '',
+      email: '',
       password: '',
     };
   },
+  methods: {
+    login() {
+      axios.get("http://localhost:8000/sanctum/csrf-cookie").then(() => {
+        axios.post("http://localhost:8000/login", {
+          email: this.email,
+          password: this.password,
+        }).then(response => {
+          console.log(response)
+          this.$store.commit('authenticate')
+
+        }).catch(error => {
+          console.log(error)
+        })
+      });
+    }
+  }
 };
 </script>
 <style scoped>

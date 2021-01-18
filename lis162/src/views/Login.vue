@@ -126,8 +126,6 @@ div
 
 <script>
 import axios from "axios";
-axios.defaults.withCredentials = true;
-axios.defaults.baseURL = "http://lis-api.test/api";
 
 export default {
   data() {
@@ -147,17 +145,16 @@ export default {
   },
   methods: {
     register() {
-      axios.get("http://lis-api.test/sanctum/csrf-cookie").then(() => {
-        axios
-          .post("register", {
-            name: this.name,
-            email: this.email,
-            password: this.password,
-            password_confirmation: this.password1,
-          })
-          .then(() => {
-            this.$router.push("/admin");
-          });
+      axios.get("http://localhost:8000/sanctum/csrf-cookie").then(() => {
+        axios.post("http://localhost:8000/register", {
+          name: this.name,
+          email: this.email,
+          password: this.password,
+          password_confirmation: this.password1,
+          admin: this.admin
+        }).then(response => {
+          console.log(response)
+        })
       });
     },
   },
