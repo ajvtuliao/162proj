@@ -10,10 +10,16 @@ const store = new Vuex.Store({
     },
     mutations: {
         authenticate (state) {
-            state.isAuthenticated=!state.isAuthenticated
+            state.isAuthenticated=true
         },
-        checkIfAdmin(state) {
-            state.isAdmin = !state.isAdmin
+        logout (state) {
+            state.isAuthenticated=false
+        },
+        isAdmin(state) {
+            state.isAdmin = true
+        },
+        isUser(state) {
+            state.isAdmin = false
         }
     }
 });

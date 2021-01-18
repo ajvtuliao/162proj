@@ -8,6 +8,12 @@ import axios from "axios"
 axios.defaults.withCredentials = true;
 Vue.config.productionTip = false
 
+// router.beforeEach((to, from, next) => {
+//   if (to.path !== '/login' && store.state.isAdmin===false) next({ path: '/user' })
+//   else if (to.path !== '/login' && store.state.isAdmin===true) next({ name: '/admin' })
+//   else next()
+// })
+
 
 new Vue({
   router,

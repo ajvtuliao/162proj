@@ -49,12 +49,18 @@ export default {
         axios.post("http://localhost:8000/login", {
           email: this.email,
           password: this.password,
-        }).then(response => {
-          console.log(response)
-          this.$store.commit('authenticate')
-
-        }).catch(error => {
-          console.log(error)
+        }).then(() => {
+          axios.get("http://localhost:8000/api/user").then(response => {
+            if (response.data.admin === 1) {
+              this.$store.commit('isAdmin')
+              // this.$router.push('/admin')
+            } else {
+              this.$store.commit('isUser')
+              // this.$router.push('/user')
+            }
+          }).catch(error => {
+            console.log(error)
+          })
         })
       });
     }
