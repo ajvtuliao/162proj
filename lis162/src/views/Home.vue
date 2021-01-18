@@ -42,6 +42,6 @@ export default {
 </script>
 <style scoped>
   .table{
-    background-color: #dadafb;
+    background-color: #ededfd;
   }
 </style>
