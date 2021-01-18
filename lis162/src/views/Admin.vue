@@ -10,6 +10,7 @@
             dense,
             prepend-inner-icon="mdi-magnify",
             clearable
+            v-model="search"
             )
         v-col(cols="1").mr-n3
           v-btn( dark color="#FE8848").mt-n6
@@ -185,7 +186,45 @@
               tbody
                 tr 
                   //- Member Name
-                  td.text-center.font-weight-bold
+                  td.text-center.font-weight-bold(@click=" dialog3 = !dialog3") Crisostomo Ibarra
+                    v-dialog(v-model="dialog3" width="600px")
+                      v-card.pa-3(width="600px") 
+                        v-row
+                          v-col.mt-n3.mb-3
+                            v-card-title.display-1.justify-center.mt-3.ml-5.font-weight-bold.member Member Name
+                        v-row.mx-2
+                          v-col(cols="4")
+                            v-card-subtitle.font-weight-bold Membership Date
+                          v-col(cols="8")
+                            //- Membership Date
+                        v-row.mx-2
+                          v-col(cols="4")
+                            v-card-subtitle.font-weight-bold Membership Status
+                          v-col(cols="8")
+                            //- Membership Status
+                        v-row.mx-2
+                          v-col(cols="4")
+                            v-card-subtitle.font-weight-bold Skills
+                          v-col(cols="8")
+                            //- Multiple Skills
+                        v-row.mx-2
+                          v-col(cols="4")
+                            v-card-subtitle.font-weight-bold Current Project
+                          v-col(cols="8")
+                            v-row 
+                              v-col(cols="7")
+                                //- Project Name
+                              v-col(cols="5")
+                                //- Project Starting Daate
+                        v-card-actions
+                          v-spacer
+                          v-btn.mr-2(
+                            dark,
+                            color="#ff4040",
+                            @click="dialog3 = false"
+                          )
+                            v-icon.mr-1 mdi-close
+                            span.mr-2 Close   
                   //- Member Status
                   td.text-center
                     v-chip(label v-if="status = active" color="#ededfd")
@@ -291,7 +330,7 @@
                                     header-color="#2bb69f"
                                   )
                                     v-spacer 
-                                    v-btn(dark color="#ff4040" @click="modal = false").mr-3.mb-2
+                                    v-btn(dark color="#ff4040" @click="modal2 = false").mr-3.mb-2
                                       span Cancel
                                     v-btn(dark color="#4747EB" @click="$refs.dialog.save(date)").mb-2
                                       span Save  
@@ -303,7 +342,7 @@
                             @click="dialog2 = false"
                           )
                             v-icon.mr-1 mdi-close
-                            span.mr-2 Close
+                            span.mr-2 Cancel
                           v-btn.mr-1(
                             dark,
                             color="#4747EB",
@@ -324,9 +363,11 @@
 export default {
   data () {
     return {
+      search: '',
       dialog: false,
       dialog1: false,
       dialog2: false,
+      dialog3: false,
       date: new Date().toISOString().substr(0, 7),
       modal: false,
       modal1: false,
