@@ -153,13 +153,18 @@ export default {
           password_confirmation: this.password1,
           admin: this.admin
         }).then(() => {
+          this.$store.commit('authenticate')
           axios.get("http://localhost:8000/api/user").then(response => {
             if (response.data.admin === 1) {
               this.$store.commit('isAdmin')
-              // this.$router.push('/admin')
+              this.$router.push('/admin').catch(error => {
+                console.log(error)
+              })
             } else {
               this.$store.commit('isUser')
-              // this.$router.push('/user')
+              this.$router.push('/user').catch(error => {
+                console.log(error)
+              })
             }
           }).catch(error => {
             console.log(error)

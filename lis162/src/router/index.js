@@ -12,6 +12,7 @@ const routes = [
   {
     path: '/',
     component: Login,
+    name: 'Login',
     children: [
       {
         path: '',
@@ -22,6 +23,7 @@ const routes = [
   {
     path: '/user',
     component: Home,
+    name: 'User',
     children: [
       {
         path: '',
@@ -32,6 +34,7 @@ const routes = [
   {
     path: '/admin',
     component: Admin,
+    name: 'Admin',
     children: [
       {
         path: '',
@@ -45,6 +48,7 @@ const router = new VueRouter({
   routes,
   mode: "history"
 });
+
 
 export default router
 

@@ -8,12 +8,22 @@ div
         span.font-weight-bold.display-3.mr-3 UP INTECH
         span.font-weight-light.display-2.mt-n2 Membership Monitoring System
       v-col(cols="1").mt-12.ml-n2
-        v-btn.ml-n16(color="rgba(34, 119, 130, 0.8)" dark depressed)
+        v-btn.ml-n16(color="rgba(34, 119, 130, 0.8)" dark depressed @click="logout")
             v-icon.mr-2 mdi-logout
             span Logout
 </template>
 <script>
-export default {};
+import axios from "axios";
+export default {
+  methods: {
+    logout() {
+      axios.post('http://localhost:8000/logout').then(() => {
+        this.$store.commit('logout')
+        this.$router.push('/')
+      })
+    }
+  }
+};
 </script>
 <style scoped>
 </style>

@@ -11,7 +11,7 @@
             prepend-inner-icon="mdi-magnify",
             clearable
             v-model="search"
-            )
+          )
         v-col(cols="1").mr-n3
           v-btn( dark color="#FE8848").mt-n6
             span Search
@@ -24,7 +24,7 @@
                 v-icon.ml-n2.mr-2 mdi-account-plus
                 span Add Member
               v-dialog(v-model="dialog" width="800")
-                v-card.pa-3(width="800px") 
+                v-card.pa-3(width="800px")
                   v-row
                     v-col.mt-n3.mb-3
                       v-card-title.display-1.justify-center.mt-3.ml-5.font-weight-bold.member Add Member Details
@@ -59,7 +59,7 @@
                           color="#6adcc9"
                           header-color="#2bb69f"
                         )
-                          v-spacer 
+                          v-spacer
                           v-btn(dark color="#ff4040" @click="modal = false").mr-3.mb-2
                             span Cancel
                           v-btn(dark color="#4747EB" @click="$refs.dialog.save(date)").mb-2
@@ -78,7 +78,7 @@
                     v-col(cols="3")
                       v-card-subtitle.font-weight-bold Current Project
                     v-col(cols="9")
-                      v-row 
+                      v-row
                         v-col(cols="7")
                           v-text-field(v-model="project" outlined prepend-inner-icon="mdi-clipboard-file" label="Project Name")
                         v-col(cols="5")
@@ -104,7 +104,7 @@
                               color="#6adcc9"
                               header-color="#2bb69f"
                             )
-                              v-spacer 
+                              v-spacer
                               v-btn(dark color="#ff4040" @click="modal = false").mr-3.mb-2
                                 span Cancel
                               v-btn(dark color="#4747EB" @click="$refs.dialog.save(date)").mb-2
@@ -122,11 +122,11 @@
                       dark,
                       color="#4747EB",
                       :loading="loading",
-                    ) 
+                    )
                       v-icon mdi-account-plus
                       v-spacer
                       span Add Member
-                      v-spacer      
+                      v-spacer
             //-  Add Skill Button
             v-col(cols="6").ml-5
               v-btn(dark color="#fad132" @click="dialog1 = !dialog1")
@@ -136,11 +136,11 @@
                 v-model="dialog1"
                 width="600px"
               )
-                v-card(width="600px").pa-3 
-                  v-row 
+                v-card(width="600px").pa-3
+                  v-row
                     v-col.mt-n3.mb-3
                       v-card-title.display-1.justify-center.mt-3.ml-5.font-weight-bold.member Add Skill Details
-                  v-row.mx-2 
+                  v-row.mx-2
                     v-col(cols="3")
                       v-card-subtitle.font-weight-bold Name
                     v-col(cols="9")
@@ -149,7 +149,7 @@
                         v-model="skill"
                         label="Skill Name"
                       )
-                  v-row.mx-2 
+                  v-row.mx-2
                     v-col(cols="3").mt-10
                       v-card-subtitle.font-weight-bold Description
                     v-col(cols="9")
@@ -168,10 +168,10 @@
                       dark,
                       color="#4747EB",
                       :loading1="loading1",
-                    ) 
+                    )
                       v-spacer
                       span Add Skill
-                      v-spacer    
+                      v-spacer
         //- Table
       v-row.mx-n13
         v-col
@@ -184,11 +184,11 @@
                   th.text-center Edit Details
                   th.text-center Remove
               tbody
-                tr 
+                tr(v-for="member in members" :key="member.id" )
                   //- Member Name
-                  td.text-center.font-weight-bold(@click=" dialog3 = !dialog3") Crisostomo Ibarra
+                  td.text-center.font-weight-bold(@click=" dialog3 = !dialog3") {{ member.name }}
                     v-dialog(v-model="dialog3" width="600px")
-                      v-card.pa-3(width="600px") 
+                      v-card.pa-3(width="600px")
                         v-row
                           v-col.mt-n3.mb-3
                             v-card-title.display-1.justify-center.mt-3.ml-5.font-weight-bold.member Member Name
@@ -211,7 +211,7 @@
                           v-col(cols="4")
                             v-card-subtitle.font-weight-bold Current Project
                           v-col(cols="8")
-                            v-row 
+                            v-row
                               v-col(cols="7")
                                 //- Project Name
                               v-col(cols="5")
@@ -227,29 +227,17 @@
                             span.mr-2 Close   
                   //- Member Status
                   td.text-center
-                    v-chip(label v-if="status = active" color="#ededfd")
-                      v-icon(color="green") mdi-circle
-                      span Active
-                    v-chip(label v-if="status = inactive" color="#ededfd")
-                      v-icon(color="red") mdi-circle
-                      span Inactive
-                    v-chip(v-if="status = moderator" color="#ededfd")
-                      v-icon(color="orange") mdi-circle
-                      span Moderator
-                    v-chip(label v-if="status = alumni" color="#ededfd")
-                      v-icon( color="blue") mdi-circle
-                      span Alumni
-                    v-chip(label v-if="status = applicant" color="#ededfd")
-                      v-icon( color="purple") mdi-circle
-                      span Applicant
+                    v-chip(label color="#ededfd")
+                      v-icon(:color="color(member)") mdi-circle
+                      span {{ member.status }}
                   //- Edit Details
-                  td.text-center 
+                  td.text-center
                     v-btn(color="#63bf5e" dark small @click="dialog2 = !dialog2")
                       v-icon mdi-clipboard-edit
                       span Edit Details
                     //- Edit Details Button
                     v-dialog(v-model="dialog2" width="800px")
-                      v-card.pa-3(width="800px") 
+                      v-card.pa-3(width="800px")
                         v-row
                           v-col.mt-n3.mb-3
                             v-card-title.display-1.justify-center.mt-3.ml-5.font-weight-bold.member Edit Member Details
@@ -284,7 +272,7 @@
                                 color="#6adcc9"
                                 header-color="#2bb69f"
                               )
-                                v-spacer 
+                                v-spacer
                                 v-btn(dark color="#ff4040" @click="modal = false").mr-3.mb-2
                                   span Cancel
                                 v-btn(dark color="#4747EB" @click="$refs.dialog.save(date)").mb-2
@@ -303,7 +291,7 @@
                           v-col(cols="3")
                             v-card-subtitle.font-weight-bold Current Project
                           v-col(cols="9")
-                            v-row 
+                            v-row
                               v-col(cols="7")
                                 v-text-field(v-model="project" outlined prepend-inner-icon="mdi-clipboard-file"       label="Project Name")
                               v-col(cols="5")
@@ -329,7 +317,7 @@
                                     color="#6adcc9"
                                     header-color="#2bb69f"
                                   )
-                                    v-spacer 
+                                    v-spacer
                                     v-btn(dark color="#ff4040" @click="modal2 = false").mr-3.mb-2
                                       span Cancel
                                     v-btn(dark color="#4747EB" @click="$refs.dialog.save(date)").mb-2
@@ -347,21 +335,23 @@
                             dark,
                             color="#4747EB",
                             :loading2="loading2",
-                          ) 
+                          )
                             v-icon.mr-2 mdi-clipboard-edit
                             v-spacer
                             span Edit Details
-                            v-spacer    
+                            v-spacer
                   //-  Remove Button
-                  td.text-center 
-                    v-btn(color="#ff4040" dark small) 
+                  td.text-center
+                    v-btn(color="#ff4040" dark small)
                       v-icon mdi-trash-can 
                       span Remove Member
-                    
+
 </template>
 <script>
+import axios from "axios";
+
 export default {
-  data () {
+  data() {
     return {
       search: '',
       dialog: false,
@@ -388,8 +378,25 @@ export default {
         "Moderator",
         "Alumni",
         "Applicant",
-      ]
+      ],
+      members: []
     };
+  },
+  methods: {
+    color(member) {
+      switch (member.status) {
+          case 'Active':
+            return 'green';
+          case 'Inactive':
+            return 'red';
+          case 'Moderator':
+            return 'orange';
+          case 'Alumni':
+            return 'blue';
+          default:
+            return 'purple';
+      }
+    }
   },
   watch: {
     loader() {
@@ -399,13 +406,19 @@ export default {
       this.loader = null;
     },
   },
+  mounted: function() {
+    axios.get("http://localhost:8000/api/members").then(response => {
+      this.members = response.data
+    })
+  },
 };
 </script>
 <style scoped>
-  .table{
-    background-color: #ededfd;
-  }
-  .member{
-    color: #000041;
-  }
+.table {
+  background-color: #ededfd;
+}
+
+.member {
+  color: #000041;
+}
 </style>
