@@ -88,7 +88,7 @@ div
                     label="Confirm Password",
                     :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'",
                     :rules="[rules.required]",
-                    :type="show ? 'text' : 'password1'",
+                    :type="show1 ? 'text' : 'password1'",
                     @click:append="show1 = !show1"
                   )
                 v-col
