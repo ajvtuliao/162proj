@@ -45,7 +45,7 @@ div
                       v-model="name",
                       outlined,
                       label="Name",
-                      placeholder="Last Name, First Name, M.I",
+                      placeholder="First Name, Last Name",
                       prepend-inner-icon="mdi-account",
                       input="text",
                       :rules="[rules.required]"
