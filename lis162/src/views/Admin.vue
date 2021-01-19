@@ -73,7 +73,7 @@
                     v-col(cols="3")
                       v-card-subtitle.font-weight-bold Skills
                     v-col(cols="9")
-                      v-select(v-model="dialog.skills" outlined label="Skills" multiple)
+                      v-select(v-model="dialog.skills" outlined label="Skills" multiple :items="skills")
                   v-row.mx-2
                     v-col(cols="3")
                       v-card-subtitle.font-weight-bold Current Project
@@ -292,7 +292,7 @@
                           v-col(cols="3")
                             v-card-subtitle.font-weight-bold Skills
                           v-col(cols="9")
-                            v-select(v-model="dialog2.skills" outlined label="Skills" multiple)
+                            v-select(v-model="dialog2.skills" outlined label="Skills" multiple :items="skills")
                         v-row.mx-2
                           v-col(cols="3")
                             v-card-subtitle.font-weight-bold Current Project
@@ -440,10 +440,11 @@ export default {
         this.dialog2.name = member.name;
         this.dialog2.status = member.status;
         this.dialog2.date = member.date;
-        this.dialog2.skills = member.skills;
-        this.dialog2.current = member.current;
+        this.dialog2.skills = member.skills.map(x => {
+          return x.skill
+        });
+        this.dialog2.current = member.project;
         this.dialog2.start = member.start;
-
       });
       this.dialog2.show = !this.dialog2.show;
     },
@@ -454,7 +455,9 @@ export default {
         this.dialog3.name = member.name;
         this.dialog3.status = member.status;
         this.dialog3.date = member.date;
-        this.dialog3.skills = member.skills;
+        this.dialog3.skills = member.skills.map(x => {
+          return x.skill
+        }).toString();
         this.dialog3.current = member.project;
         this.dialog3.start = member.start;
         console.log(member);
@@ -468,18 +471,25 @@ export default {
       }).then(response => {
         console.log(response)
         this.dialog1.show = !this.dialog1.show;
+        axios.get("http://localhost:8000/api/skills").then(response => {
+          this.skills = response.data.map(x => x.skill)
+        })
       })
     },
     editmember(id) {
-      axios.put('http://localhost:8000/api/members/member/'+id+'/edit', {
+      axios.post('http://localhost:8000/api/members/member/'+id+'/edit', {
         name: this.dialog2.name,
         status: this.dialog2.status,
         date: this.dialog2.date,
         current: this.dialog2.current,
         start: this.dialog2.start,
+        skills: this.dialog2.skills,
       }).then(response => {
         console.log(response)
         this.dialog2.show=false;
+        axios.get("http://localhost:8000/api/members").then(response => {
+          this.members = response.data
+        })
       })
     },
     addmember() {
@@ -517,6 +527,9 @@ export default {
   mounted: function() {
     axios.get("http://localhost:8000/api/members").then(response => {
       this.members = response.data
+    });
+    axios.get("http://localhost:8000/api/skills").then(response => {
+      this.skills = response.data.map(x => x.skill)
     })
   },
   computed: {
@@ -528,7 +541,7 @@ export default {
       } else {
         return this.members
       }
-    }
+    },
   }
 };
 </script>
