@@ -28,7 +28,7 @@ div
               @click:append="show = !show"
             )
       v-col(cols="1").mt-12
-        v-btn(color="rgba(34, 119, 130, 0.8)" depressed label="Login" small dark @click="login")
+        v-btn(color="rgba(34, 119, 130, 0.8)" depressed label="Login" small dark @click="login" v-model="login")
           v-icon.ml-n1 mdi-login
           span.ml-1 Login
 </template>

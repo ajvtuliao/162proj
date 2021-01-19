@@ -303,8 +303,6 @@
                                 v-text-field(v-model="project" outlined prepend-inner-icon="mdi-clipboard-file"       label="Project Name")
                               v-col(cols="5")
                                 v-dialog(
-                                  ref="dialog"
-                                  :return-value.sync="projdate"
                                   width="300px"
                                   v-model="modal1"
                                 )
@@ -325,9 +323,9 @@
                                     header-color="#2bb69f"
                                   )
                                     v-spacer
-                                    v-btn(dark color="#ff4040" @click="modal2 = false").mr-3.mb-2
+                                    v-btn(dark color="#ff4040" @click="modal1 = false").mr-3.mb-2
                                       span Cancel
-                                    v-btn(dark color="#4747EB" @click="$refs.dialog.save(date)").mb-2
+                                    v-btn(dark color="#4747EB").mb-2
                                       span Save  
                         v-card-actions
                           v-spacer

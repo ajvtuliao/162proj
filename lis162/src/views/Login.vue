@@ -117,6 +117,7 @@ div
             v-col(cols="4")
               v-btn.mb-6.ml-n10.mt-n4(
                 color="#4747EB",
+                v-model="register"
                 dark,
                 raised,
                 medium,
