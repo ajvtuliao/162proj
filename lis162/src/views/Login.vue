@@ -155,7 +155,7 @@ export default {
           admin: this.admin
         }).then(() => {
           this.$store.commit('authenticate')
-          axios.get("http://localhost:8000/api/user").then(response => {
+          axios.get("http://localhost:8000/api/user/"+this.email).then(response => {
             if (response.data.admin === 1) {
               this.$store.commit('isAdmin')
               this.$router.push('/admin').catch(error => {

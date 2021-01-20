@@ -173,7 +173,7 @@ export default {
     };
   },
   mounted: function() {
-    axios.get("api/members").then(response => {
+    axios.get("http://localhost:8000/api/members").then(response => {
       this.members = response.data
     });
   },
@@ -204,7 +204,7 @@ export default {
       }
     },
     get_member_details(id) {
-      axios.get('api/members/member/'+id).then(response => {
+      axios.get('http://localhost:8000/api/members/member/'+id).then(response => {
         let member = response.data[0];
         this.dialog.name = member.name;
         this.dialog.status = member.status;
@@ -219,7 +219,7 @@ export default {
       this.dialog.show = !this.dialog.show;
     },
     show_skill_details(skill) {
-      axios.get('api/skills/'+skill).then(response => {
+      axios.get('http://localhost:8000/api/skills/'+skill).then(response => {
         console.log(response);
         this.dialog1.skill = response.data.skill;
         this.dialog1.description = response.data.description;

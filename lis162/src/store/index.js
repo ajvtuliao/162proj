@@ -13,7 +13,10 @@ const vuexPersist = new VuexPersist({
 const store = new Vuex.Store({
     state: {
         isAuthenticated: false,
-        isAdmin: false
+        isAdmin: false,
+        member_skill_id: 1,
+        member_id: 1,
+        user_id: 1
     },
     mutations: {
         authenticate (state) {
@@ -27,7 +30,17 @@ const store = new Vuex.Store({
         },
         isUser(state) {
             state.isAdmin = false
+        },
+        add_member_skill_id(state) {
+            state.member_skill_id+=1;
+        },
+        add_member_id(state) {
+            state.member_id+=1;
+        },
+        add_user_id(state) {
+            state.user_id+=1;
         }
+
     },
     plugins: [vuexPersist.plugin]
 });

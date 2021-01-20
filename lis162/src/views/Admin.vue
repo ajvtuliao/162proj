@@ -281,7 +281,7 @@
                                 v-spacer
                                 v-btn(dark color="#ff4040" @click="dialog2.modal = false").mr-3.mb-2
                                   span Cancel
-                                v-btn(dark color="#4747EB" @click="$refs.dialog[member.id-1].save(dialog2.date)").mb-2
+                                v-btn(dark color="#4747EB" @click="$refs.dialog[0].save(dialog2.date)").mb-2
                                   span Save
                         v-row.mx-2
                           v-col(cols="3")
@@ -325,7 +325,7 @@
                                     v-spacer
                                     v-btn(dark color="#ff4040" @click="dialog2.modal1 = false").mr-3.mb-2
                                       span Cancel
-                                    v-btn(dark color="#4747EB" @click="$refs.dialog_1[member.id-1].save(dialog2.start)").mb-2
+                                    v-btn(dark color="#4747EB" @click="$refs.dialog_1[0].save(dialog2.start)").mb-2
                                       span Save  
                         v-card-actions
                           v-spacer
@@ -435,7 +435,7 @@ export default {
     },
     get_member_details_2(id) {
       // console.log(id);
-      axios.get('api/members/member/'+id).then(response => {
+      axios.get('http://localhost:8000/api/members/member/'+id).then(response => {
         let member = response.data[0];
         this.dialog2.name = member.name;
         this.dialog2.status = member.status;
@@ -450,7 +450,7 @@ export default {
     },
     get_member_details_3(id) {
       // console.log(id);
-      axios.get('api/members/member/'+id).then(response => {
+      axios.get('http://localhost:8000/api/members/member/'+id).then(response => {
         let member = response.data[0];
         this.dialog3.name = member.name;
         this.dialog3.status = member.status;
@@ -465,19 +465,23 @@ export default {
       this.dialog3.show = !this.dialog3.show;
     },
     addskill() {
-      axios.post('api/skills', {
+      axios.post('http://localhost:8000/api/skills', {
         skill: this.dialog1.skill,
-        skilldesc: this.dialog1.skilldesc
+        skilldesc: this.dialog1.skilldesc,
+        member_skill_id: this.$store.state.member_skill_id
       }).then(response => {
         console.log(response)
         this.dialog1.show = !this.dialog1.show;
-        axios.get("api/skills").then(response => {
+        this.dialog1.skill = '';
+        this.dialog1.skilldesc='';
+        this.$store.commit('add_member_skill_id');
+        axios.get("http://localhost:8000/api/skills").then(response => {
           this.skills = response.data.map(x => x.skill)
         })
       })
     },
     editmember(id) {
-      axios.post('api/members/member/'+id+'/edit', {
+      axios.post('http://localhost:8000/api/members/member/'+id+'/edit', {
         name: this.dialog2.name,
         status: this.dialog2.status,
         date: this.dialog2.date,
@@ -487,30 +491,44 @@ export default {
       }).then(response => {
         console.log(response)
         this.dialog2.show=false;
-        axios.get("api/members").then(response => {
+        this.dialog2.name = '';
+        this.dialog2.status='';
+        this.dialog2.date='';
+        this.dialog2.current='';
+        this.dialog2.start='';
+        this.dialog2.skills='';
+        axios.get("http://localhost:8000/api/members").then(response => {
           this.members = response.data
         })
       })
     },
     addmember() {
-      axios.post('api/members/member/', {
+      axios.post('http://localhost:8000/api/members/member/', {
         name: this.dialog.name,
         status: this.dialog.status,
         date: this.dialog.date,
         skills: this.dialog.skills,
         current: this.dialog.current,
         start: this.dialog.start,
+        user_id: this.$store.state.user_id
       }).then(response => {
         console.log(response)
         this.dialog.show = false;
-        axios.get("api/members").then(response => {
+        this.dialog.name='';
+        this.dialog.status='';
+        this.dialog.date='';
+        this.dialog.skills='';
+        this.dialog.current='';
+        this.dialog.start='';
+        this.$store.commit('add_user_id');
+        axios.get("http://localhost:8000/api/members").then(response => {
           this.members = response.data
         })
       })
     },
     remove(id) {
-      axios.post('api/members/member/'+id+'/delete').then(() => {
-        axios.get("api/members").then(response => {
+      axios.post('http://localhost:8000/api/members/member/'+id+'/delete').then(() => {
+        axios.get("http://localhost:8000/api/members").then(response => {
           this.members = response.data
         })
       })
@@ -525,10 +543,10 @@ export default {
     },
   },
   mounted: function() {
-    axios.get("api/members").then(response => {
+    axios.get("http://localhost:8000/api/members").then(response => {
       this.members = response.data
     });
-    axios.get("api/skills").then(response => {
+    axios.get("http://localhost:8000/api/skills").then(response => {
       this.skills = response.data.map(x => x.skill)
     })
   },
