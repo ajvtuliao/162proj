@@ -435,7 +435,7 @@ export default {
     },
     get_member_details_2(id) {
       // console.log(id);
-      axios.get('http://localhost:8000/api/members/member/'+id).then(response => {
+      axios.get('api/members/member/'+id).then(response => {
         let member = response.data[0];
         this.dialog2.name = member.name;
         this.dialog2.status = member.status;
@@ -450,7 +450,7 @@ export default {
     },
     get_member_details_3(id) {
       // console.log(id);
-      axios.get('http://localhost:8000/api/members/member/'+id).then(response => {
+      axios.get('api/members/member/'+id).then(response => {
         let member = response.data[0];
         this.dialog3.name = member.name;
         this.dialog3.status = member.status;
@@ -465,19 +465,19 @@ export default {
       this.dialog3.show = !this.dialog3.show;
     },
     addskill() {
-      axios.post('http://localhost:8000/api/skills', {
+      axios.post('api/skills', {
         skill: this.dialog1.skill,
         skilldesc: this.dialog1.skilldesc
       }).then(response => {
         console.log(response)
         this.dialog1.show = !this.dialog1.show;
-        axios.get("http://localhost:8000/api/skills").then(response => {
+        axios.get("api/skills").then(response => {
           this.skills = response.data.map(x => x.skill)
         })
       })
     },
     editmember(id) {
-      axios.post('http://localhost:8000/api/members/member/'+id+'/edit', {
+      axios.post('api/members/member/'+id+'/edit', {
         name: this.dialog2.name,
         status: this.dialog2.status,
         date: this.dialog2.date,
@@ -487,13 +487,13 @@ export default {
       }).then(response => {
         console.log(response)
         this.dialog2.show=false;
-        axios.get("http://localhost:8000/api/members").then(response => {
+        axios.get("api/members").then(response => {
           this.members = response.data
         })
       })
     },
     addmember() {
-      axios.post('http://localhost:8000/api/members/member/', {
+      axios.post('api/members/member/', {
         name: this.dialog.name,
         status: this.dialog.status,
         date: this.dialog.date,
@@ -503,14 +503,14 @@ export default {
       }).then(response => {
         console.log(response)
         this.dialog.show = false;
-        axios.get("http://localhost:8000/api/members").then(response => {
+        axios.get("api/members").then(response => {
           this.members = response.data
         })
       })
     },
     remove(id) {
-      axios.post('http://localhost:8000/api/members/member/'+id+'/delete').then(() => {
-        axios.get("http://localhost:8000/api/members").then(response => {
+      axios.post('api/members/member/'+id+'/delete').then(() => {
+        axios.get("api/members").then(response => {
           this.members = response.data
         })
       })
@@ -525,10 +525,10 @@ export default {
     },
   },
   mounted: function() {
-    axios.get("http://localhost:8000/api/members").then(response => {
+    axios.get("api/members").then(response => {
       this.members = response.data
     });
-    axios.get("http://localhost:8000/api/skills").then(response => {
+    axios.get("api/skills").then(response => {
       this.skills = response.data.map(x => x.skill)
     })
   },

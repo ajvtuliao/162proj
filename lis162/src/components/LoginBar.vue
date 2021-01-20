@@ -45,13 +45,14 @@ export default {
   },
   methods: {
     login() {
-      axios.get("http://localhost:8000/sanctum/csrf-cookie").then(() => {
-        axios.post("http://localhost:8000/login", {
+      axios.get("sanctum/csrf-cookie").then(() => {
+        axios.post("login", {
           email: this.email,
           password: this.password,
         }).then(() => {
           this.$store.commit('authenticate')
-          axios.get("http://localhost:8000/api/user").then(response => {
+          axios.get("api/user/"+this.email).then(response => {
+            console.log(response);
             if (response.data.admin === 1) {
               this.$store.commit('isAdmin')
               this.$router.push('/admin').catch(error => {
